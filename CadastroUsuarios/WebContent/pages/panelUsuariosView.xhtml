@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet name="/css/style.css" />
+</h:head>
+
+<h:body>
+	<div class="containerPgUsersCad">
+		<h:form id="contatosBusca">
+			<p:dataTable var="usuario"
+				value="#{UsuarioBean.listaUsuarios}"
+				emptyMessage="Nenhum usuário cadastrado."
+				styleClass="customPanelLoginCont">
+				<f:facet name="header">
+	            Usuários Cadastrados
+	        	</f:facet>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+
+				<p:column headerText="Telefones">
+					<p:commandButton value="Visualizar"
+						onclick="PF('telefones').show();" />
+				</p:column>
+
+				<p:column headerText="">
+					<p:menuButton value="Opções">
+						<p:menuitem value="Alterar" />
+						<p:menuitem value="Deletar" update="contatosBusca" />
+					</p:menuButton>
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Novo Usuário"
+						onclick="PF('novoUsuario').show();" />
+					<p:button value="Sair" outcome="/pages/loginView.xhtml"
+						styleClass="sairButton" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+	</div>
+	<h:form>
+		<p:dialog header="Cadastro Usuário" modal="true" visible="false"
+			widgetVar="novoUsuario" styleClass="customPanelLoginCont">
+			<p:panel styleClass="customPanelLoginCont">
+				<h:panelGrid columns="1" cellpadding="5">
+
+					<p:inputText id="nome" placeholder="Nome"
+						value="#{UsuarioBean.usuario.nome}" />
+
+					<p:inputText id="email" placeholder="Email"
+						value="#{UsuarioBean.usuario.email}" />
+
+					<p:password id="senha" placeholder="Senha"
+						value="#{UsuarioBean.usuario.senha}" />
+
+					<div>
+						<p:selectOneMenu value="#{UsuarioBean.telefone.tipo}"
+							style="width:80px">
+							<f:selectItem itemLabel="Celular" itemValue="Celular" />
+							<f:selectItem itemLabel="Fixo" itemValue="Fixo" />
+						</p:selectOneMenu>
+						<p:inputText id="ddd" placeholder="DDD"
+							value="#{UsuarioBean.telefone.ddd}" style="width:50px" />
+						<p:inputText id="telefone" placeholder="Telefone"
+							value="#{UsuarioBean.telefone.numero}" />
+					</div>
+
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" update="@form"
+							actionListener="#{UsuarioBean.salvarUsuario}" />
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+		</p:dialog>
+	</h:form>
+
+	<h:form>
+		<p:dialog header="Telefones" modal="true" visible="false"
+			widgetVar="telefones" styleClass="customPanelLoginCont">
+			<div class="containerPgUsersCad">
+				<h:form id="telefones">
+					<p:dataTable var="telefones"
+						value="#{UsuarioBean.listaTelefones}"
+						emptyMessage="Nenhum telefone cadastrado."
+						styleClass="customPanelLoginCont">
+						<f:facet name="header">
+	            			Telefones
+	        			</f:facet>
+						<p:column headerText="Tipo">
+							<h:outputText value="#{telefone.tipo}" />
+						</p:column>
+
+						<p:column headerText="DDD">
+							<h:outputText value="#{telefone.ddd}" />
+						</p:column>
+
+						<p:column headerText="Telefone">
+							<h:outputText value="#{telefone.numero}" />
+						</p:column>
+
+						<f:facet name="footer">
+							<p:commandButton value="Adicionar Telefone"
+								onclick="PF('novoTelefone').show();" />
+						</f:facet>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</p:dialog>
+	</h:form>
+
+	<h:form>
+		<p:dialog header="Novo Telefone" modal="true" visible="false"
+			widgetVar="novoTelefone" styleClass="customPanelLoginCont">
+			<p:panel styleClass="customPanelLoginCont">
+				<h:panelGrid columns="1" cellpadding="5">
+
+					<div>
+						<p:selectOneMenu value="#{UsuarioBean.telefone.tipo}"
+							style="width:80px">
+							<f:selectItem itemLabel="Celular" itemValue="Celular" />
+							<f:selectItem itemLabel="Fixo" itemValue="Fixo" />
+						</p:selectOneMenu>
+						<p:inputText id="ddd" placeholder="DDD"
+							value="#{UsuarioBean.telefone.ddd}" style="width:50px" />
+						<p:inputText id="telefone" placeholder="Telefone"
+							value="#{UsuarioBean.telefone.numero}" />
+					</div>
+
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" update="@form"
+							actionListener="#{UsuarioBean.maisUmTelefone}" />
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

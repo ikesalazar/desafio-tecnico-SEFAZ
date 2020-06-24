@@ -1,0 +1,67 @@
+@charset "ISO-8859-1";
+
+body {
+	background-image: linear-gradient(#03a4fa, white);
+}
+
+.container {
+	width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.containerPgUsersCad {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.customPanelLoginCont {
+	background-image: linear-gradient(#03a4fa, white);
+	border-style: none;
+}
+
+.customPanelLogin {
+	margin-left: 15%;
+}
+
+.customImage {
+	margin-top: 5%;
+	margin-left: 35%;
+	margin-right: 10%;
+	margin-bottom: 5%;
+	width: 80px;
+}
+
+.entrarButton {
+	margin-top: 10%;
+	margin-left: 15%;
+	width: 140px;
+}
+
+.link {
+	margin-left: 30%;
+	width: 140px;
+}
+
+.cadButton {
+	margin-left: 65px;
+}
+
+.texto {
+	margin-right: 20px;
+	margin-left: 650px;
+}
+
+.pesquisa {
+	width: 200px;
+}
+
+.sairButton {
+	margin-left: 650px;
+}

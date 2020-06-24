@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="/css/style.css" />
+</h:head>
+
+<h:body>
+	<div class="container">
+		<h:form>
+			<p:panel styleClass="customPanelLoginCont">
+				<p:graphicImage class="logo" name="/images/personIcon.png"
+					styleClass="customImage" />
+				<p:messages id="messages" showDetail="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+				<h:panelGrid columns="1" cellpadding="5"
+					styleClass="customPanelLogin">
+
+					<p:inputText id="email" placeholder="Email"
+						value="#{LoginBean.inputEmail}" />
+
+					<p:password id="password" placeholder="Senha"
+						value="#{LoginBean.inputSenha}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Entrar" action="#{LoginBean.loginIn}"
+							styleClass="entrarButton" />
+
+						<br />
+						<br />
+
+						<p:commandLink onclick="PF('criarLogin').show();"
+							styleClass="link">
+							<h:outputText value="Criar Login" />
+						</p:commandLink>
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</div>
+	<h:form>
+		<p:dialog header="Criar Login" modal="true" visible="false"
+			widgetVar="criarLogin" styleClass="customPanelLoginCont">
+			<p:panel styleClass="customPanelLoginCont">
+				<h:panelGrid columns="1" cellpadding="5">
+
+					<p:inputText id="nome" placeholder="Nome"
+						value="#{LoginBean.usuario.nome}" />
+
+					<p:inputText id="email" placeholder="Email"
+						value="#{LoginBean.usuario.email}" />
+
+					<p:password id="senha" placeholder="Senha"
+						value="#{LoginBean.usuario.senha}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" update="@form"
+							actionListener="#{LoginBean.criarLogin}" />
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
